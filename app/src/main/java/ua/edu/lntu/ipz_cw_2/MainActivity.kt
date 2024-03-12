@@ -38,10 +38,11 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun SignInCard(name: String, modifier: Modifier = Modifier) {
+    var signInTrue by remember { mutableStateOf(false) }
+    var email by remember { mutableStateOf(TextFieldValue()) }
+    var password by remember { mutableStateOf(TextFieldValue()) }
+
     if (!signInTrue) {
-        var signInTrue by remember { mutableStateOf(false) }
-        var email by remember { mutableStateOf(TextFieldValue()) }
-        var password by remember { mutableStateOf(TextFieldValue()) }
         Column(
             modifier = Modifier
         ) {
@@ -63,7 +64,16 @@ fun SignInCard(name: String, modifier: Modifier = Modifier) {
         }
     }
     else {
-
+        Text(
+            text = "Sign in successful"
+        )
+        Button(onClick = {
+            signInTrue = false
+            email = TextFieldValue()
+            password = TextFieldValue()
+        }) {
+            Text("Sign Out")
+        }
     }
 }
 
