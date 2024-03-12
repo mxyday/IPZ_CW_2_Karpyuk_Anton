@@ -53,13 +53,16 @@ fun SignInCard(name: String, modifier: Modifier = Modifier) {
             Button(onClick = {
                 if (email.text.isNotEmpty() && password.text.isNotEmpty()) {
                     signInTrue = true
-                } )
+                }
+            }) {
+                Text("Sign In")
             }
         }
     }
+
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun SignInPreview() {
     IPZ_CW_2_Karpyuk_AntonTheme {
