@@ -35,24 +35,26 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun SignInCard(name: String, modifier: Modifier = Modifier) {
-    Column(
-        var signInState by remember { mutableStateOf<SignInState>(SignInState.SignIn) }
-        var email by remember { mutableStateOf("") }
-        var password by remember { mutableStateOf("") }
-
-        modifier = Modifier
-    ) {
-        OutlinedTextField(
-            value = "",
-            onValueChange = { onEmailChange(it) },
-        )
-        OutlinedTextField(
-            value = "",
-            onValueChange = { onPasswordChange(it) },
+    if (!signInTrue) {
+        var signInTrue by remember { mutableStateOf(false) }
+        var email by remember { mutableStateOf(TextFieldValue()) }
+        var password by remember { mutableStateOf(TextFieldValue()) }
+        Column(
+            modifier = Modifier
+        ) {
+            OutlinedTextField(
+                value = "",
+                onValueChange = { email = it },
             )
-        )
-        Button(onClick = { onSignInClick() }) {
-            Text("Sign In")
+            OutlinedTextField(
+                value = "",
+                onValueChange = { password = it },
+            )
+            Button(onClick = {
+                if (email.text.isNotEmpty() && password.text.isNotEmpty()) {
+                    signInTrue = true
+                } )
+            }
         }
     }
 }
